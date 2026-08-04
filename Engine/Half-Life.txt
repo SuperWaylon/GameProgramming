@@ -1,0 +1,19 @@
+Half-Life
+AC: 16 (Armor of Shadows)
+HP: 6
+Kept Ability: Knowledge from a Past Life (2/3)
+Capacity: 100 (Per slot)
+Quick Access Slots: 5
+Inventory: Stone Knife (2/10), 2x Stone Axe (1d4+str, 20/60 thrown), 
+	   Bronze Battleaxe (1d8 or 1d10(twohanded) + str), Celestial Locator Rock
+
+ 
+Inhabited HP: 68/77 Rage: (1/3)  
+
+Party Resources:
+58 Wood, 10 Stone, 42 Brittle Bones, 23 Hide, 49 Meat, 10 Rusty Nails, 2gp, 
+1 Malachite Alloy Ingot, 
+   
+
+Base: 
+Quick Crafting Station, Campfire, Crafting Hut, Bunkhouse, Resource Storage

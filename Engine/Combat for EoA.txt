@@ -1,0 +1,5 @@
+Combat for EoA:
+* Pick up a weapon -> Stored in Inventory (So some slight menuing too)
+* Weapon types should have different kinds of swings (Ex Sword is balanced but an Axe would be -speed/+dmg)
+* Roll makes player invulnerable, and when dashing into an enemy they bounce off them.
+* Roll should have a cooldown, as to not be spammed.

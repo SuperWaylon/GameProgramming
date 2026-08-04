@@ -1,0 +1,144 @@
+Pre-Calc Notes
+
+My notes deleted from before 7/20. Heres what I saved:
+
+6/29
+
+* Functions have 1 output(f(x) or y) per input(x). Tested by vertical line test.
+* Vertical line test: If crossed 2+ times, operation is not a function.
+* Notation f(x) and otherwise.
+* "If given x, return y" (Same as coding pretty much)
+* Evaluate: 1) Substitute 2) Solve
+* Domain: Independent Values (x) Every possible input
+* Range: Dependent Values (y) Every possible output
+* f(x) = # (Domain = All real numbers, Range = #)
+* 
+* Library of Functions
+* Constant Function (f(x) = #) (Domain = All, Range = #)
+* Linear Function (g(x) = x) (Domain \& Range = All)
+* Quadratic Function / Parabola (h(x) = x^2) (Domain = All, Range >= 0)
+* Cubic Function (f(x) = x^3)
+* Square Root Function (g(x) = sqrt(x)) (Domain >= 0 , Range >= 0)
+* Cube Root Function (h(x) = x^(1/3)) (Domain = All, Range = All)
+* Rational Functions (k(x) = 1/x) (Domain = (x != 0) ,  Range = (x != 0))
+* Absolute Value Function (f(x) = |x|) (Domain = All, Range >= 0)
+* Exponential Function (b(x) = 2^x) (Domain = All, Range >= 0)
+* Logarithmic Function (l(x) = log(x)) (Domain > 0, Range >= 0)
+
+
+
+6/30
+
+* Transformations (Moves them around, but they have the same rules) (f(x) = x + # = Trans Linear Function)
+* Composite Function (Functions inside a Function) (h(x) = 4x, x = x + 4)
+* Inverse = Negative, Inverse != Opposite. Opposite = Negation (In higher math)
+* Switch x and y, then solve for y OR plug one function into the other.
+* f(x) = 4x + 3 | Inverse: f^-1(x) = (x-3)/4
+* Little thing I found: Inverse looks like the original but rotated 90 degrees.
+* Functions need to pass the horizontal line test to check if they have an inverse. If they pass they are 1:1
+* Do 1.2, 1.3 and 1.4 tonight.
+
+
+
+7/1
+
+* 2 Ways to look for inverses: Either swap (x,y) or plug 1 function into the other and solve.
+* Make sure to do both if you're unsure. Just because one fails doesn't mean the other will. In general, plugging one into the other is the best way to check if you have 2 functions. Else do the swap.
+* You can change an equation to look different as long as you're not breaking math in some way. I probably wont be very good with it.
+* When plugging in a number for n, even if you get the inverse answer that could be a coincidence, so don't do that.
+
+Other Notes I remember:
+* Quadratic Formula : (-b ± (sqrt(b^2 - 4(a)(c)))/2(a)
+* q/p : q = all factors of constant, p = all factors of first term
+* Solve by factoring
+* Plus/Minus: ±
+
+7/20
+* Rational Functions
+* f(x) = 1/x -> Parent Function (x in the denominator)
+* Dividing functions by functions (Find domains & what breaks math, ie 1/0, sqrt(-#), log(#<=0))
+
+* ex. y = (x+1)/(x-2) -> y intercept = -1/2, since 0/denom = 0 x intercept would be -1.
+* ex2. y = (4x - 1)(x+2)/(x-2)(x+1) -> y intercept = 1, x intercept = -2, 1/4
+
+* Vertical asymptotes: Straightforward(cant divide by 0, can get close but will not have a value) (x = ?)
+* Basically, Vertical asymptotes will break math. Where denom = 0. 
+
+* Horizontal asymptote (End Behavior): Degrees show scenarios (y = ?)
+* Bottom Degree > Top = HA: y=0
+* Top == Bottom = HA: (top coeff)/(bottom coeff) because the highest coeff does the heavy lifting in the function
+* Bottom < Top =  No HA 
+
+* ex. y = (-4x^2)/(x^2+2x-0) -> 4/1 = 4 so HA = -4. y intercept = 0, x intercepts = 0, VA = (x=-4 & x = +2)
+* ex2. y = (x^2(x-1))/((x+2)(x-4)) -> 1/1 so HA = 1, y intercept = -1, x intercepts = 1
+
+7/23
+Notes before test
+
+Solving Polynomials
+* Set = 0
+* If it doesn't factor easily use Synthetic Division, Quadratic Forula or Rational Root Theorem
+
+Synthetic Division
+* Only coeff
+* Bring down first, multiply by num, add, repeat.
+* Remainder = 0 -> num = factor
+
+Building Polynomials
+* Root 3 -> (x-3)
+* Multiply all factors, simplify to standard form
+* Imaginary Root? include both conjugates (2 - i & 2 + i)
+
+Crossing -> Odd Multiplicity
+Bounce -> Even Multiplicity
+
+Imaginary and Irrational Roots always have conjugate pairs
+
+Max Turning Points = degree-1
+
+Bounds
+* Bottom row all pos away from 0 = Upper Bound
+* Bottom row all alternates - and + = Lower Bound
+
+Find Imaginary/Irrational Roots with Quadratic Formula
+* use D = b^2 - 4ac
+* D = + perfect square -> Two rational
+* D = + non-perfect square -> Two irrational roots
+* D = 0 = One repeated real root
+* D = - = two imaginary roots
+
+*Degree =< 3 -> Factor out rational roots
+
+7/27
+* Exponential functions: y=#^x
+* Dependent Variable = y
+* Independent Variable = x
+* Base = #
+* Have Horizontal Asymptotes
+* y intercept = 1 (#^0 = 1)
+
+* (0,1) Will always be a point on the parent function
+* HA: y = 0
+* If base > 1, increase left to right
+* If base < 1, decrease left to right
+* If base = 1, y = 1
+
+* Logs ask (base) of what power gives me y?
+* Logs undo exponents, switch the inputs and outputs for the x and y of exponents.
+* Point on graph is (1,0)
+* VA: x=0
+* Base will be positive for this class
+* To input log bases in desmos, simply put log_(base).
+* For a calculator, 
+
+* Solving exponential functions: Get the bases to match. If the bases are the same, find the value of x that makes the exponent match.
+* 3^(x-4)=1 = 3^(0) so x = 4 (4-4 = 0)
+* 8^x = 64 ; 8^x = 8^2 ; x = 2
+* (2^3)^x = 2^6 -> 2^3x = 2^6
+* (1/9)^x = 243 -> (3^-2)^x = 3^5 -> 3^-2x = 3^5 -> -2x = 5 -> x = -2.5
+* 2^3x+1 = 8 -> 2^3x+1 = 2^3 -> 3x+1 = 3 -> 3x = 2 -> x = (2/3)
+* 4 * 2^4 = 32^2x -> 2^6 = (2^5)^2x -> 6 = 10x
+* 10^x = 15 -> x = log(10) 15 -> x = 1.176
+* On calculator, pressing log makes the base 10.
+
+

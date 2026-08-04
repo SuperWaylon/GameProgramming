@@ -1,0 +1,64 @@
+#include "Enemy.h"
+#include "Renderer.h"
+#include "Engine.h"
+#include "player.h"
+#include "SpaceGame.h"
+
+void Enemy::Update(float dt)
+{
+    Player* player = m_scene->GetActorByName<Player>("Player");
+    if (player)
+    {
+        nu::Vector2 direction = player->GetTransform().position - m_transform.position;
+        float rotation = direction.Angle();
+        SetRotation(rotation * nu::RadToDeg);
+
+        nu::Vector2 forward{ 1, 0 };
+        forward = forward.Rotate(m_transform.rotation * nu::DegToRad);   
+        AddVelocity(forward * m_speed * dt);
+    }
+
+    // Particle System
+    if (m_velocity.Length() > 5.0f && nu::RandomFloat(0.0f, 1.0f) < 0.3f)
+    {
+        nu::Particle particle;
+        particle.position = m_transform.position;
+        particle.color = { 1.0f, 0.0f, 0.0f };
+        particle.lifespan = nu::RandomFloat(0.5f, 1.5f);
+        particle.velocity = { nu::RandomFloat(-200.0f, 200.0f), nu::RandomFloat(-200.0f, 200.0f) };
+
+        nu::Engine::Get().GetPS().AddParticle(particle);
+    }
+
+    Actor::Update(dt);
+}
+
+void Enemy::OnCollision(Actor* other)
+{
+    if (other->GetTag() == "PlayerBullet")
+    {
+        other->SetDestroyed();
+        m_health -= 1.0f;
+
+        if (m_health <= 0)
+        {
+            SetDestroyed();
+
+            ((SpaceGame*)m_scene->GetGame())->AddPoints(100);
+
+            nu::Engine::Get().GetAudio().PlaySound("Enemy Death");
+
+            // create particle explosion
+            for (int i = 0; i < 100; i++)
+            {
+                nu::Particle particle;
+                particle.position = m_transform.position;
+                particle.color = { 1.0f, 1.0f, 1.0f };
+                particle.lifespan = nu::RandomFloat(0.5f, 2.0f);
+                particle.velocity = { nu::RandomFloat(-600.0f, 600.0f), nu::RandomFloat(-600.0f, 600.0f) };
+
+                nu::Engine::Get().GetPS().AddParticle(particle);
+            }
+        }
+    }
+}
