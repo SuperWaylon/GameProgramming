@@ -31,7 +31,8 @@ namespace nu
 		friend class Text;
 
 		friend class Texture;
-		void DrawTexture(class Texture* texture, float x, float y) const;
+		void DrawTexture(const class Texture& texture, float x, float y);
+		void DrawTexture(const class Texture& texture, float x, float y, float angle, float scale = 1.0f, bool flipH = false);
 	private:
 		SDL_Window* m_window = nullptr;
 		SDL_Renderer* m_renderer = nullptr;

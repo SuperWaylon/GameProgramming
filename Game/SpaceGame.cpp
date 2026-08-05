@@ -1,9 +1,10 @@
-#include "pch.h"
 #include "SpaceGame.h"
 #include "Engine.h"
 #include "player.h"
 #include "Enemy.h"
 #include "Assets.h"
+
+#include <memory>
 
 using namespace nu; 
 
@@ -14,18 +15,16 @@ bool SpaceGame::Initialize()
 	m_scene = new Scene();
 	m_scene->SetGame(this);
 
-	m_titleFont = new Font();
-	m_titleFont->Load("fonts/airstrike.ttf", 64);
+	m_titleFont = Resources().GetWithID<Font>("title_font", "fonts/airstrike.ttf", 64.0f);
 
 	m_titleText = new Text(m_titleFont);
 	m_titleText->Create(Engine::Get().GetRenderer(), "Blast++", Color{ 1.0f, 1.0f, 1.0f });
 
-	m_gameFont = new Font();
-	m_gameFont->Load("fonts/airstrike.ttf", 32);
+	m_gameFont = Resources().GetWithID<Font>("title_font", "fonts/airstrike.ttf", 32.0f);
 
-	m_scoreText = new Text(m_gameFont);
-	m_livesText = new Text(m_gameFont);
-	m_difficultyText = new Text(m_gameFont);
+	m_scoreText = new Text(Resources().Get<Font>("fonts/airstrike.ttf", 32.0f));
+	m_livesText = new Text(Resources().Get<Font>("fonts/airstrike.ttf", 32.0f));
+	m_difficultyText = new Text(Resources().Get<Font>("fonts/airstrike.ttf", 32.0f));
 
 	//Initialize Audio Here
 	Engine::Get().GetAudio().AddSound("BGM", "audio/RockNRoll.mp3");

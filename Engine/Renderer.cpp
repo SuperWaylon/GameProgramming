@@ -116,16 +116,16 @@ namespace nu
         }
     }
 
-    void Renderer::DrawTexture(Texture* texture, float x, float y) const
+    void Renderer::DrawTexture(const Texture& texture, float x, float y, float angle, float scale, bool flipH) 
     {
-        Vector2 size = texture->GetSize();
+        Vector2 size = texture.GetSize();
 
         SDL_FRect destRect;
         destRect.x = x;
         destRect.y = y;
-        destRect.w = size.x;
-        destRect.h = size.y;
+        destRect.w = size.x * scale;
+        destRect.h = size.y * scale;
 
-        SDL_RenderTexture(m_renderer, texture->m_texture, NULL, &destRect);
+        SDL_RenderTextureRotated(m_renderer, texture.m_texture, NULL, &destRect, angle, NULL, (flipH) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
     }
 }

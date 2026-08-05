@@ -6,11 +6,12 @@
 
 #include "Text.h"
 #include "Texture.h"
+#include "Audio.h"
 
 #include "Renderer.h"
 #include "Input.h"
 #include "gametime.h"
-#include "Audio.h"
+
 #include "ParticleSystem.h"
 
 #include "actor.h"

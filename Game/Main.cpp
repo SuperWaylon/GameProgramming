@@ -97,7 +97,7 @@ int main()
 
     // create texture, using shared_ptr so texture can be shared
     std::shared_ptr<Texture> texture = std::make_shared<Texture>();
-    texture->Load("textures/mario.png", Engine::Get().GetRenderer());
+    texture->Load("textures/player.png", Engine::Get().GetRenderer());
 
     for (int i = 0; i < 20; i++)
     {}
@@ -205,8 +205,8 @@ int main()
 
         Engine::Get().GetPS().Draw(Engine::Get().GetRenderer());
 
-        // TODO:: get engine renderer.DrawTexture(...get() texture pointer..., 30, 30);
-        Engine::Get().GetRenderer().DrawTexture(texture.get(), 30, 30);
+        Engine::Get().GetRenderer().DrawTexture(*texture, 30, 30, 0, 1.0f, false);
+        Engine::Get().GetPS().Draw(Engine::Get().GetRenderer());
 
         //Paint Stuff
         /*
