@@ -39,6 +39,36 @@ int main()
     //INITIALIZATION
     SetWorkingDirectory("Assets");
 
+    rapidjson::Document document;
+    if (!nu::json::Load("data/data.json", document))
+    {
+        std::cerr << "Failed to load JSON file" << std::endl;
+        return -1;
+    }
+
+    // read/show the data from the json file
+    std::string name;
+    int age;
+    float speed;
+    bool isAwake;
+    nu::Vector2 position;
+    nu::Vector3 color;
+
+    // read the json data
+    JSON_READ(document, name);
+    JSON_READ(document, age);
+    JSON_READ(document, speed);
+    JSON_READ(document, isAwake);
+    JSON_READ(document, position);
+    JSON_READ(document, color);
+
+    // show the data
+    std::cout << name << " " << age << " " << speed << " " << isAwake << std::endl;
+    std::cout << position.x << " " << position.y << std::endl;
+    std::cout << color.r << " " << color.g << " " << color.b << " " << std::endl;
+
+    return 0;
+
     Engine::Get().Initialize();
 
     SpaceGame game;

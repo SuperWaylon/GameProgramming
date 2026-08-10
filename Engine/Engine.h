@@ -18,6 +18,8 @@
 #include "Scene.h"
 #include "Game.h"
 
+#include "Json.h"
+
 namespace nu
 {
 	class Engine

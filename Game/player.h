@@ -1,10 +1,10 @@
 #pragma once
-#include "Actor.h"
+#include "actor.h"
 
 struct PlayerDesc : public nu::ActorDesc
 {
     float speed;
-    std::shared_ptr<nu::Model> thrusterModel;   // <-- changed from nu::Model
+    std::shared_ptr<nu::Model> thrusterModel;  
 };
 
 class Player : public nu::Actor
