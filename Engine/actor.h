@@ -1,6 +1,8 @@
 #pragma once
 #include "Transform.h"
 #include "Model.h"
+#include "Resource.h"
+#include "Texture.h"
 #include <string>
 #include <memory>
 
@@ -16,7 +18,8 @@ namespace nu
         Vector2 velocity{ 0.0f, 0.0f };
         float damping{ 0.0f };
         float lifespan{ 0 };
-        std::shared_ptr<Model> model;
+        res_t<Model> model;
+        res_t<Texture> texture;
         bool wrap{ true };
     };
 
@@ -32,7 +35,8 @@ namespace nu
             m_model{ actorDesc.model },
             m_damping{ actorDesc.damping },
             m_lifespan{ actorDesc.lifespan },
-            m_wrap{ actorDesc.wrap }
+            m_wrap{ actorDesc.wrap },
+            m_texture{actorDesc.texture}
         {
         }
 
@@ -73,7 +77,9 @@ namespace nu
         bool m_destroyed = {false};
         bool m_wrap{ true };
 
-        std::shared_ptr<Model> m_model;
+        res_t<Model> m_model;
+        res_t<Texture> m_texture;
+
         Scene* m_scene{ nullptr };
 
     };

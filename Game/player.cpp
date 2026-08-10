@@ -59,7 +59,8 @@ void Player::Update(float dt)
         BulletDesc bulletDesc;
         bulletDesc.name = "Bullet";
         bulletDesc.tag = "PlayerBullet";
-        bulletDesc.model = assets::bmodel;
+        //bulletDesc.model = assets::bmodel;
+        bulletDesc.texture = nu::Resources().Get<nu::Texture>("textures/bullet.png", nu::Engine::Get().GetRenderer());
         bulletDesc.transform = m_transform;
         bulletDesc.damping = 3.0f;
         bulletDesc.speed = 1000.0f;

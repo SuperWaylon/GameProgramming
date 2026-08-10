@@ -11,6 +11,8 @@
 #include <cmath>
 #include <map>
 #include <memory>
+#include <random>
+#include <fstream>
 
 using namespace nu;
 
@@ -24,60 +26,110 @@ public:
     Object& operator = (const Object& object) { std::cout << "assignment\n"; return *this; }
 };
 
+uint32_t seed = 1234;
+
+uint32_t RNG()
+{
+    seed = (seed * 1103515245) + 12345;
+    return seed;
+}
+
 int main()
 {
-    std::cout << "====================Object====================\n";
-    {
-        Object objectA;
-        Object objectB(objectA);
-        Object objectC;
-        objectC = objectA;
-    }
-
-    std::cout << "====================Raw Pointers====================\n";
-    {
-        Object* objectA = new Object();
-        std::cout << objectA << std::endl;
-        Object* objectB = new Object(*objectA);
-        std::cout << objectB << std::endl;
-        Object* objectC = nullptr;
-        objectC = objectA;
-        std::cout << objectC << std::endl;
-
-        delete objectA;
-        delete objectB;
-    }
-
-    std::cout << "====================Unique Pointers====================\n";
-    {
-        std::unique_ptr<Object> objectA = std::make_unique<Object>();
-        std::cout << objectA.get() << std::endl;
-        std::unique_ptr<Object> objectB;
-        objectB = std::move(objectA);
-        std::cout << objectB.get() << std::endl;
-
-        objectB.reset();
-    }
-
-    std::cout << "====================Shared Pointers====================\n";
-    std::shared_ptr<Object> objectC;
-    {
-        auto objectA = std::make_shared<Object>();
-        std::cout << objectA.get() << std::endl;
-        std::cout << objectA.use_count() << std::endl;
-        auto objectB = objectA;
-        std::cout << objectB.get() << std::endl;
-        std::cout << objectB.use_count() << std::endl;
-        objectC = objectA;
-        std::cout << objectC.get() << std::endl;
-        std::cout << objectC.use_count() << std::endl;
-    }
-    std::cout << objectC.use_count() << std::endl;
-
-    //return 0;
-    
     //INITIALIZATION
     SetWorkingDirectory("Assets");
+
+    {
+        //Read file (Input file)
+        std::ifstream file("data/text.txt");;
+        if (file.is_open())
+        {
+            std::string str;
+            while (std::getline(file, str))
+            {
+                std::cout << str << std::endl;
+            }
+        }
+        else
+        {
+            std::cout << "Could not load.\n";
+        }
+        file.close();
+    }
+
+    {
+        //Write file (Output file)
+        std::ofstream file("data/text.txt", std::ios::app);;
+        if (file.is_open())
+        {
+            file << "\nHave a good day.\n";
+        }
+    }
+
+    {
+        //Read / Write (input / output file)
+        std::fstream file("data/text.txt", std::ios::in | std::ios::out | std::ios::app);;
+        if (file.is_open())
+        {
+            //Input
+            file << "Add a line.\n";
+            file.seekg(0);
+            //Output
+            std::string str;
+            while (std::getline(file, str))
+            {
+                std::cout << str << std::endl;
+            }
+        }
+    }
+
+    {
+        std::string name;
+        int score;
+        bool isAlive;
+
+        //save game data
+        bool save = false;
+        if (save == true)
+        {
+            name = "Waylon Rossiter";
+            score = 1234;
+            isAlive = true;
+
+            //Save game data
+            std::ofstream file("data/game.txt");;
+            if (file.is_open())
+            {
+                file << name << "\n";
+                file << score << "\n";
+                file << std::boolalpha << isAlive << "\n";
+            }
+        }
+        //load game data
+        bool load = true;
+        if (load)
+        {
+            //Read file (Input file)
+            std::ifstream file("data/game.txt");;
+            if (file.is_open())
+            {
+                std::getline(file, name);
+
+                std::string str;
+                std::getline(file, str);
+
+                score = std::stoi(str);
+                //file >> score;
+                file >> std::boolalpha >> isAlive;
+            }
+        }
+        //Display game data
+        std::cout << name << std::endl;
+        std::cout << score << std::endl;
+        std::cout << isAlive << std::endl;
+    }
+    return 0;
+
     Engine::Get().Initialize();
 
     SpaceGame game;
@@ -94,10 +146,6 @@ int main()
     Engine::Get().GetAudio().AddSound("whistle", "audio/test/whistle.mp3");
 
     Scene scene;
-
-    // create texture, using shared_ptr so texture can be shared
-    std::shared_ptr<Texture> texture = std::make_shared<Texture>();
-    texture->Load("textures/player.png", Engine::Get().GetRenderer());
 
     for (int i = 0; i < 20; i++)
     {}
@@ -132,36 +180,6 @@ int main()
 
         //Game
         game.Update(dt);
-        
-        
-        //Paint Stuff
-        /*
-        if (Engine::Get().GetInput().GetButtonDown(Input::MouseButton::Left))
-        {
-            Vector2 mousePosition = Engine::Get().GetInput().getMousePosition();
-
-            if (points.empty() || std::isnan(points.back().x))
-            {
-                points.push_back(mousePosition);
-            }
-            else
-            {
-                Vector2 delta = mousePosition - points.back();
-                if (delta.Length() > 10.0f)
-                {
-                    points.push_back(mousePosition);
-        }
-            }
-        }
-                
-        if (Engine::Get().GetInput().GetButtonReleased(Input::MouseButton::Left))
-        {
-            if (!points.empty() && !std::isnan(points.back().x))
-            {
-                points.push_back(Vector2{ NAN, NAN });
-            }
-        }
-        */
 
         //Audio Keys
         if (Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_1))
@@ -205,22 +223,6 @@ int main()
 
         Engine::Get().GetPS().Draw(Engine::Get().GetRenderer());
 
-        Engine::Get().GetRenderer().DrawTexture(*texture, 30, 30, 0, 1.0f, false);
-        Engine::Get().GetPS().Draw(Engine::Get().GetRenderer());
-
-        //Paint Stuff
-        /*
-        for (int i = 0; i < (int)points.size() - 1; i++)
-        {
-            if (std::isnan(points[i].x) || std::isnan(points[i + 1].x))
-        {
-                continue; 
-            }
-
-            Engine::Get().GetRenderer().SetColor(RandomFloat(), RandomFloat(), RandomFloat());
-            Engine::Get().GetRenderer().DrawLine(points[i].x, points[i].y, points[i + 1].x, points[i + 1].y);
-        }
-        */
         Engine::Get().GetRenderer().Present();
     }
 
