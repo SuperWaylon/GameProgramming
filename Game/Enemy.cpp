@@ -22,8 +22,12 @@ void Enemy::Update(float dt)
     if (m_velocity.Length() > 5.0f && nu::RandomFloat(0.0f, 1.0f) < 0.3f)
     {
         nu::Particle particle;
-        particle.position = m_transform.position;
-        particle.color = { 1.0f, 0.0f, 0.0f };
+
+        nu::Vector2 offset(-20.0f, 0.0f);
+        offset = offset.Rotate(m_transform.rotation * nu::DegToRad);
+
+        particle.position = m_transform.position + offset;
+        particle.color = { 0.0f, 1.0f, 0.0f };
         particle.lifespan = nu::RandomFloat(0.5f, 1.5f);
         particle.velocity = { nu::RandomFloat(-200.0f, 200.0f), nu::RandomFloat(-200.0f, 200.0f) };
 

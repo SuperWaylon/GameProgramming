@@ -129,4 +129,10 @@ namespace nu
 
         SDL_RenderTextureRotated(m_renderer, texture.m_texture, NULL, &destRect, angle, NULL, (flipH) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
     }
+
+    void Renderer::SetTextureColor(const Texture& texture, float r, float g, float b, float a) const
+    {
+        SDL_SetTextureColorModFloat(texture.m_texture, r, g, b);
+        SDL_SetTextureAlphaModFloat(texture.m_texture, a);
+    }
 }

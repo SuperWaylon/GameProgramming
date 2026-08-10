@@ -1,15 +1,20 @@
 #pragma once
 #include "Vector2.h"
 #include "Vector3.h"
+#include "ResourceManager.h"
 
 #include <vector>
 
 namespace nu
 {
+	class Texture;
+	class Renderer;
+
 	struct Particle
 	{
 		bool active{ false };
 		float lifespan{ 1 };
+		float maxLifespan{ 1 };   
 
 		Vector2 position{ 0, 0 };
 		Vector2 velocity{ 0, 0 };
@@ -21,11 +26,11 @@ namespace nu
 	public:
 		ParticleSystem() = default;
 
-		bool Initialize(size_t poolSize = 1000);
+		bool Initialize(Renderer& renderer, size_t poolSize = 1000);
 		void Shutdown();
 
 		void Update(float dt);
-		void Draw(const class Renderer& renderer);
+		void Draw(const Renderer& renderer);
 
 		void AddParticle(const Particle& particle);
 
@@ -33,7 +38,7 @@ namespace nu
 		Particle* GetFreeParticle();
 
 	private:
-		// store particles in particle pool
 		std::vector<Particle> m_particles;
+		res_t<Texture> m_texture;
 	};
 }
