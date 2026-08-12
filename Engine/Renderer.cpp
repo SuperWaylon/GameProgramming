@@ -123,8 +123,8 @@ namespace nu
         SDL_FRect destRect;
         destRect.w = size.x * scale;
         destRect.h = size.y * scale;
-        destRect.x = x - (0.5 * destRect.w);
-        destRect.y = y - (0.5 * destRect.h);
+        destRect.x = x - (0.5f * destRect.w);
+        destRect.y = y - (0.5f * destRect.h);
         
 
         SDL_RenderTextureRotated(m_renderer, texture.m_texture, NULL, &destRect, angle, NULL, (flipH) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
