@@ -3,15 +3,17 @@
 #include "random.h"
 #include "Vector2.h"
 #include "mathUtil.h"
+#include "StringUtils.h"
 
 #include "Text.h"
 #include "Texture.h"
 #include "Audio.h"
 
+#include "Factory.h"
+
 #include "Renderer.h"
 #include "Input.h"
 #include "gametime.h"
-
 #include "ParticleSystem.h"
 
 #include "actor.h"

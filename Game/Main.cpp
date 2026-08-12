@@ -3,8 +3,8 @@
 #include "Enemy.h"
 #include "Assets.h"
 #include "SpaceGame.h"
-
 #include "SDL3/SDL.h"
+
 #include <fmod.hpp>
 #include <iostream>
 #include <vector>
@@ -16,29 +16,22 @@
 
 using namespace nu;
 
-class Object
-{
-public:
-    Object() { std::cout << "constructor\n"; }
-    ~Object() { std::cout << "destructor\n"; }
-
-    Object(const Object& object) { std::cout << "copy\n"; }
-    Object& operator = (const Object& object) { std::cout << "assignment\n"; return *this; }
-};
-
-uint32_t seed = 1234;
-
-uint32_t RNG()
-{
-    seed = (seed * 1103515245) + 12345;
-    return seed;
-}
 
 int main()
 {
+    Factory::Instance().Register<Actor>("Actor");
+    auto actor = Factory::Instance().Create("Actor");
+    std::cout << actor->IsActive() << std::endl;
+
+    return 0;
+
     //INITIALIZATION
     SetWorkingDirectory("Assets");
 
+    
+
+#pragma region JSON
+    /*
     rapidjson::Document document;
     if (!nu::json::Load("data/data.json", document))
     {
@@ -68,6 +61,8 @@ int main()
     std::cout << color.r << " " << color.g << " " << color.b << " " << std::endl;
 
     return 0;
+    */
+#pragma endregion
 
     Engine::Get().Initialize();
 

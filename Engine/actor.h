@@ -1,4 +1,5 @@
 #pragma once
+#include "Object.h"
 #include "Transform.h"
 #include "Model.h"
 #include "Resource.h"
@@ -23,7 +24,7 @@ namespace nu
         bool wrap{ true };
     };
 
-    class Actor
+    class Actor : public Object
     {
     public:
         Actor() = default;
