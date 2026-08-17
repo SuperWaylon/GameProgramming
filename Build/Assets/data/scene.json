@@ -1,11 +1,50 @@
 {
-  "name": "Waylon Rossiter",
-  "tag": "Student",
-  "active": true,
-  "speed": 750,
-  "transform": {
-    "position": [ 2.4, 5.6 ],
-    "rotation": 45,
-    "scale": 2
-  }
+  "actors": [
+    {
+      "name": "PlayerPrototype",
+      "type": "Player",
+      "prototype": true,
+      "tag": "Player",
+      "active": true,
+      "speed": 2000,
+      "damping": 3,
+      "texture": "textures/player.png",
+      "transform": {
+        "position": [ 640, 512 ],
+        "rotation": -90,
+        "scale": 1.5
+      }
+    },
+    {
+      "name": "EnemyPrototype",
+      "type": "Enemy",
+      "prototype": true,
+      "tag": "Enemy",
+      "active": true,
+      "speed": 800,
+      "health": 3,
+      "damping": 3,
+      "texture": "textures/enemy.png",
+      "transform": {
+        "position": [ 640, 512 ],
+        "rotation": -90,
+        "scale": 1.5
+      }
+    },
+    {
+      "name": "BulletPrototype",
+      "type": "Bullet",
+      "prototype": true,
+      "tag": "Bullet",
+      "active": true,
+      "speed": 2000,
+      "damping": 3,
+      "texture": "textures/bullet.png",
+      "transform": {
+        "position": [ 640, 512 ],
+        "rotation": -90,
+        "scale": 1.5
+      }
+    }
+  ]
 }

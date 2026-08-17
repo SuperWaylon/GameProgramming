@@ -115,11 +115,6 @@ void Player::Update(float dt)
 void Player::Draw(const nu::Renderer& renderer) const
 {
     Actor::Draw(renderer);
-
-    if (m_isThrusting)
-    {
-        renderer.DrawModel(*m_thrusterModel, m_transform);
-    }
 }
 
 void Player::OnCollision(Actor* other)

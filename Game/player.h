@@ -3,8 +3,7 @@
 
 struct PlayerDesc : public nu::ActorDesc
 {
-    float speed;
-    std::shared_ptr<nu::Model> thrusterModel;  
+    float speed; 
 };
 
 class Player : public nu::Actor
@@ -20,10 +19,12 @@ public:
     Player() = default;
     Player(const PlayerDesc& playerDesc) :
         Actor{ playerDesc },
-        m_speed{ playerDesc.speed },
-        m_thrusterModel{ playerDesc.thrusterModel }
+        m_speed{ playerDesc.speed }
     {
     }
+
+    CLASS_PROTOTYPE(Player)
+
 
     void Update(float dt) override;
     void Draw(const class nu::Renderer& renderer) const override;
@@ -36,7 +37,6 @@ public:
 private:
     int m_ammo = 0;
     float m_speed = 0.0f;
-    std::shared_ptr<nu::Model> m_thrusterModel;
     bool m_isThrusting = false;
 
     float m_fireRate = 0.25f;

@@ -40,13 +40,15 @@ namespace nu
         {
         }
 
+        CLASS_PROTOTYPE(Actor)
+
         virtual void Update(float dt);
         virtual void Draw(const class Renderer& renderer) const;
 
         virtual void OnCollision(Actor* other) {}
 
         const Transform& GetTransform() const { return m_transform; }
-        void SetPosition(Vector2& position) { m_transform.position = position; }
+        void SetPosition(const Vector2& position) { m_transform.position = position; }
         void SetRotation(float rotation) { m_transform.rotation = rotation; }
         void SetScale(float scale) { m_transform.scale = scale; }
 
