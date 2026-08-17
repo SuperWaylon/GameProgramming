@@ -4,6 +4,7 @@
 #include "Model.h"
 #include "Resource.h"
 #include "Texture.h"
+#include "Component.h"
 #include <string>
 #include <memory>
 
@@ -32,11 +33,9 @@ namespace nu
             m_tag{ actorDesc.tag },
             m_transform{ actorDesc.transform },
             m_velocity{ actorDesc.velocity },
-            m_model{ actorDesc.model },
             m_damping{ actorDesc.damping },
             m_lifespan{ actorDesc.lifespan },
-            m_wrap{ actorDesc.wrap },
-            m_texture{actorDesc.texture}
+            m_wrap{ actorDesc.wrap }
         {
         }
 
@@ -80,8 +79,7 @@ namespace nu
         bool m_destroyed = {false};
         bool m_wrap{ true };
 
-        res_t<Model> m_model;
-        res_t<Texture> m_texture;
+        std::vector<Component*> m_components;
 
         Scene* m_scene{ nullptr };
 

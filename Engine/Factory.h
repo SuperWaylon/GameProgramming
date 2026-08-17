@@ -6,6 +6,17 @@
 #include <memory>
 #include <map>
 
+#define FACTORY_REGISTER(classname)                                     \
+    class Register##classname                                           \
+    {                                                                   \
+    public:                                                             \
+        Register##classname()                                           \
+        {                                                               \
+            nu::Factory::Instance().Register<classname>(#classname);    \
+        }                                                               \
+    };                                                                  \
+    static Register##classname registerInstance;
+
 namespace nu
 {
     class ICreator
@@ -70,6 +81,8 @@ namespace nu
             std::cerr << "Object already registered: " << name << std::endl;
             return;
         }
+        std::cout << "Object registered: " << name << std::endl;
+
         m_registry[lowerName] = std::make_unique<Creator<T>>();
     }
 

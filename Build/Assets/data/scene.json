@@ -8,12 +8,17 @@
       "active": true,
       "speed": 2000,
       "damping": 3,
-      "texture": "textures/player.png",
       "transform": {
         "position": [ 640, 512 ],
         "rotation": -90,
         "scale": 1.5
-      }
+      },
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "textire": "textures/player.png"
+        }
+      ]
     },
     {
       "name": "EnemyPrototype",
@@ -21,7 +26,7 @@
       "prototype": true,
       "tag": "Enemy",
       "active": true,
-      "speed": 800,
+      "speed": 1000,
       "health": 3,
       "damping": 3,
       "texture": "textures/enemy.png",
@@ -37,8 +42,9 @@
       "prototype": true,
       "tag": "Bullet",
       "active": true,
-      "speed": 2000,
+      "speed": 1000,
       "damping": 3,
+      "lifespan" :  1,
       "texture": "textures/bullet.png",
       "transform": {
         "position": [ 640, 512 ],
