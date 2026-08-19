@@ -3,6 +3,7 @@
 #include "Scene.h"
 #include "Actor.h"
 #include "Factory.h"
+#include "Components/ColliderComponent.h"
 
 namespace nu
 {
@@ -15,6 +16,7 @@ namespace nu
 	void Scene::RemoveAllActors()
 	{
 		m_actors.clear();
+		m_pendingActors.clear();
 	}
 
 	bool Scene::Load(const std::string& sceneName)
@@ -95,9 +97,13 @@ namespace nu
 			{
 				if (actorA == actorB || actorA->m_destroyed || actorB->m_destroyed) continue;
 
+				auto colliderA = actorA->GetComponent<ColliderComponent>();
+				auto colliderB = actorB->GetComponent<ColliderComponent>();
+
+				if (!colliderA || !colliderB) continue;
+
 				//Check Collision
-				float distance = (actorA->m_transform.position - actorB->m_transform.position).Length();
-				if (distance <= actorA->GetRadius() + actorB->GetRadius())
+				if (colliderA->CheckCollision(*colliderB))
 				{
 					actorA->OnCollision(actorB.get());
 					actorB->OnCollision(actorA.get());

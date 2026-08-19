@@ -52,42 +52,70 @@ void Player::Update(float dt)
     // Fire
     m_fireTimer -= dt;
 
-    float currentFireRate = (m_weaponMode == WeaponMode::FullAuto) ? m_fireRate : m_spreadFireRate;
+    float currentFireRate =
+        (m_weaponMode == WeaponMode::FullAuto)
+        ? m_fireRate
+        : m_spreadFireRate;
 
-    if (nu::Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_SPACE) && m_fireTimer <= 0.0f)
+    if (nu::Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_SPACE) &&
+        m_fireTimer <= 0.0f)
     {
         m_fireTimer = currentFireRate;
-
-        BulletDesc bulletDesc;
-        bulletDesc.name = "Bullet";
-        bulletDesc.tag = "PlayerBullet";
-        //bulletDesc.model = assets::bmodel;
-        bulletDesc.texture = nu::Resources().Get<nu::Texture>("textures/bullet.png", nu::Engine::Get().GetRenderer());
-        bulletDesc.transform = m_transform;
-        bulletDesc.damping = 3.0f;
-        bulletDesc.speed = 1000.0f;
-        bulletDesc.lifespan = 1.0f;
 
         if (m_weaponMode == WeaponMode::FullAuto)
         {
             nu::Engine::Get().GetAudio().PlaySound("Laser1");
 
-            m_scene->AddActor(std::move(std::make_unique<Bullet>(bulletDesc)));
+            auto bullet =
+                nu::Factory::Instance().Create<Bullet>("BulletPrototype");
+
+            bullet->SetTransform(m_transform);
+            bullet->SetScale(1.0f);
+            bullet->SetTag("PlayerBullet");
+
+            GetScene()->AddActor(std::move(bullet));
         }
         else // Spread
         {
             nu::Engine::Get().GetAudio().PlaySound("Laser2");
 
-            // center
-            m_scene->AddActor(std::move(std::make_unique<Bullet>(bulletDesc)));
+            // Center bullet
+            {
+                auto bullet =
+                    nu::Factory::Instance().Create<Bullet>("BulletPrototype");
 
-            // left
-            bulletDesc.transform.rotation = m_transform.rotation - m_spreadAngle;
-            m_scene->AddActor(std::move(std::make_unique<Bullet>(bulletDesc)));
+                bullet->SetTransform(m_transform);
+                bullet->SetScale(1.0f);
+                bullet->SetTag("PlayerBullet");
 
-            // right
-            bulletDesc.transform.rotation = m_transform.rotation + m_spreadAngle;
-            m_scene->AddActor(std::move(std::make_unique<Bullet>(bulletDesc)));
+                GetScene()->AddActor(std::move(bullet));
+            }
+
+            // Left bullet
+            {
+                auto bullet =
+                    nu::Factory::Instance().Create<Bullet>("BulletPrototype");
+
+                bullet->SetTransform(m_transform);
+                bullet->SetScale(1.0f);
+                bullet->SetTag("PlayerBullet");
+                bullet->SetRotation(m_transform.rotation - m_spreadAngle);
+
+                GetScene()->AddActor(std::move(bullet));
+            }
+
+            // Right bullet
+            {
+                auto bullet =
+                    nu::Factory::Instance().Create<Bullet>("BulletPrototype");
+
+                bullet->SetTransform(m_transform);
+                bullet->SetScale(1.0f);
+                bullet->SetTag("PlayerBullet");
+                bullet->SetRotation(m_transform.rotation + m_spreadAngle);
+
+                GetScene()->AddActor(std::move(bullet));
+            }
         }
     }
 

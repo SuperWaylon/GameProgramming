@@ -22,7 +22,7 @@ int main()
 {
     //Can't touch this
     SetWorkingDirectory("Assets");
-
+    
     //INITIALIZATION
 
     Engine::Get().Initialize();

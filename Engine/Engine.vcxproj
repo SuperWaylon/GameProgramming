@@ -190,6 +190,8 @@
     <ClInclude Include="actor.h" />
     <ClInclude Include="Audio.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="Components\CircleColliderComponent.h" />
+    <ClInclude Include="Components\ColliderComponent.h" />
     <ClInclude Include="Components\RendererComponent.h" />
     <ClInclude Include="Components\SpriteRendererComponent.h" />
     <ClInclude Include="Engine.h" />
@@ -223,6 +225,7 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Audio.cpp" />
+    <ClCompile Include="Components\CircleColliderComponent.cpp" />
     <ClCompile Include="Components\SpriteRendererComponent.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="File.cpp" />
