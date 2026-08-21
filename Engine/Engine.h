@@ -21,6 +21,7 @@
 #include "Game.h"
 
 #include "Json.h"
+#include "Physics/Physics.h"
 
 namespace nu
 {
@@ -42,6 +43,8 @@ namespace nu
 
 		ParticleSystem& GetPS() { return m_particleSystem; }
 
+		Physics& GetPhysics() { return m_physics; }
+
 	private:
 
 		Engine() = default;
@@ -55,6 +58,8 @@ namespace nu
 		Audio m_audio;
 
 		ParticleSystem m_particleSystem;
+
+		Physics m_physics;
 	};
 	
 }

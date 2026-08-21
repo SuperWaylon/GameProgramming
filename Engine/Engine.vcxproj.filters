@@ -58,6 +58,9 @@
     <ClCompile Include="Components\CircleColliderComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="Physics\Physics.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -162,6 +165,9 @@
     <ClInclude Include="Components\CircleColliderComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="Physics\Physics.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -175,6 +181,9 @@
     </Filter>
     <Filter Include="Components">
       <UniqueIdentifier>{39c3726c-71f8-4ba5-a316-65523cb873f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{65d155a2-b031-45d9-b837-7cd5a3634e43}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
